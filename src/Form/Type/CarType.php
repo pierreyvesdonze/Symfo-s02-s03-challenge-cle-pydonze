@@ -2,6 +2,8 @@
 
 namespace App\Form\Type;
 
+use App\Entity\Brand;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -15,7 +17,16 @@ class CarType extends AbstractType
             'model',
             TextType::class,
             [
-                "label" => "Modèle de la voiture"
+                "label" => "Marque de la voiture"
+            ]
+        );
+
+        $builder->add(
+            'brand',
+            EntityType::class,
+            [
+                "class" => Brand::class,
+                "choice_label" => "name"
             ]
         );
 
@@ -25,7 +36,7 @@ class CarType extends AbstractType
             [
                 "required" => true,
                 "label"    => "Année de commercialisation",
-                "years" => range(1900, date('Y')+5)
+                "years" => range(1900, date('Y'))
             ]
         );
 

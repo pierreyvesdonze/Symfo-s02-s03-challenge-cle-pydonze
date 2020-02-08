@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Brand;
 use App\Entity\Car;
 use App\Form\Type\CarType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,15 +20,20 @@ class CarController extends AbstractController
      */
     public function carsList()
     {
-
         $carsRepository = $this->getDoctrine()->getRepository(Car::class);
-
         $cars = $carsRepository->findAll();
+
+        $brandsRepository = $this->getDoctrine()->getRepository(Brand::class);
+        $brands = $brandsRepository->findAll();
+
+        dump($cars);
+
 
         return $this->render(
             'cars.html.twig',
             [
-                'cars' => $cars
+                'cars'   => $cars,
+                'brands' => $brands
             ]
         );
     }

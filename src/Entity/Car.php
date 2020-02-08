@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -18,6 +19,7 @@ class Car
 
     /**
      * @ORM\Column(type="string", length=255)
+     * 
      */
     private $model;
 
@@ -26,6 +28,12 @@ class Car
      * 
      */
     private $year;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Brand", inversedBy="cars")
+     */
+    private $brand;
+
 
     public function getId(): ?int
     {
@@ -52,6 +60,26 @@ class Car
     public function setYear($year): self
     {
         $this->year = $year;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of brand
+     */ 
+    public function getBrand()
+    {
+        return $this->brand;
+    }
+
+    /**
+     * Set the value of brand
+     *
+     * @return  self
+     */ 
+    public function setBrand($brand)
+    {
+        $this->brand = $brand;
 
         return $this;
     }
