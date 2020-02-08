@@ -1,0 +1,13 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+    <div class="jumbotron">
+        <h1 class="display-4">Bienvenue sur My Cars</h1>
+        <p class="lead">Une base de donnée de voitures</p>
+        <hr class="my-4">
+        <p>Pour commencer vous pouvez parcourir la liste des voitures</p>
+        <a class="btn btn-primary" href="{{ path('cars_list') }}" role="button">Explorer les belles tutures</a>
+    </div>
+
+{% endblock %}

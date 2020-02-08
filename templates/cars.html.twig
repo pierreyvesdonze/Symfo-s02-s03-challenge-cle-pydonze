@@ -1,0 +1,23 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+    <div class="float-right">
+        <a href="{{ path("car_create") }}" class="btn btn-primary">Ajouter une voiture</a>
+    </div>
+    <h2>Voitures</h2>
+
+    <div class="row">
+        {% for id, car in cars %}
+            <div class="col-sm-12 col-md-6 col-lg-4 mb-2">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ car.model }}</h5>
+      
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}
