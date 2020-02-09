@@ -20,7 +20,7 @@ class BrandController extends AbstractController
      */
     public function brandsList()
     {
-    
+
         $brandsRepository = $this->getDoctrine()->getRepository(Brand::class);
         $brands = $brandsRepository->findAll();
 
@@ -32,7 +32,7 @@ class BrandController extends AbstractController
         );
     }
 
-     /**
+    /**
      * @Route("/create", name="brand_create")
      */
     public function brandCreate(Request $request)
@@ -60,4 +60,17 @@ class BrandController extends AbstractController
         );
     }
 
+    /**
+     * @Route("/{id}/delete", name="brand_delete")
+     */
+    public function carDelete(Brand $brand)
+    {
+        $manager = $this->getDoctrine()->getManager();
+        $manager->remove($brand);
+        $manager->flush();
+
+        $this->addFlash("success", "La marque a bien été supprimée");
+
+        return $this->redirectToRoute('brands_list');
+    }
 }

@@ -12,6 +12,8 @@
 					<h5 class="card-title">{{ brand.name }}</h5>
 					
 					<a href="{{ path('brand_cars_list', {"id": brand.id}) }}" class="btn btn-primary">Voir les voitures</a>
+
+						<a href=" {{ path('brand_delete', {'id' : brand.id}) }} " class="btn btn-danger" onclick="return confirm('Confirmez la suppression')">Delete</a>
 				</div>
 			</div>
 		{% endfor %}

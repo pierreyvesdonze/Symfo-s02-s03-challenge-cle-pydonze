@@ -24,7 +24,8 @@ class Brand
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Car", mappedBy="brand")
+     * @ORM\OneToMany(targetEntity="App\Entity\Car", mappedBy="brand", cascade={"remove"})
+     * 
      */
     private $cars;
     
