@@ -11,7 +11,7 @@
 				<div class="card-body">
 					<h5 class="card-title">{{ brand.name }}</h5>
 					
-					<a href="{{ path('cars_list') }}" class="btn btn-primary">Voir les voitures</a>
+					<a href="{{ path('brand_cars_list', {"id": brand.id}) }}" class="btn btn-primary">Voir les voitures</a>
 				</div>
 			</div>
 		{% endfor %}

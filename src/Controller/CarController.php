@@ -26,16 +26,42 @@ class CarController extends AbstractController
         $carsRepository = $this->getDoctrine()->getRepository(Car::class);
         $cars = $carsRepository->findAll();
 
-        $brandsRepository = $this->getDoctrine()->getRepository(Brand::class);
-        $brands = $brandsRepository->findAll();
-
         return $this->render(
             'cars/cars.html.twig',
             [
                 'cars'   => $cars,
-                'brands' => $brands
             ]
         );
+    }
+
+     /**
+     * @Route("/brand/{id}/list", name="brand_cars_list")
+     */
+    public function carsListByBrand(Brand $brand)
+    {
+        /** @var CarRepository */
+        $carsRepository = $this->getDoctrine()->getRepository(Car::class);
+        $cars = $carsRepository->findBy(
+            ['brand' => $brand]
+        );
+
+        return $this->render(
+            'cars/cars_by_brand.html.twig',
+            [
+                'cars'   => $cars,
+                'brand'  => $brand
+            ]
+        );
+    }
+
+       /**
+     * @Route("/view/{id}", name="car_view")
+     */
+    public function carView(Car $car) {
+
+        return $this->render('cars/view.html.twig', [
+            'car' => $car
+        ]);
     }
 
     /**
