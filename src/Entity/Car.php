@@ -2,8 +2,8 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CarRepository")
@@ -19,20 +19,25 @@ class Car
 
     /**
      * @ORM\Column(type="string", length=255)
-     * 
+     * @ORM\OrderBy({"title" = "DESC"})
      */
     private $model;
 
     /**
      * @ORM\Column(type="date")
-     * 
-     */
+     *      */
     private $year;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Brand", inversedBy="cars")
+     *  @ORM\OrderBy({"title" = "ASC"})
      */
     private $brand;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $brochureFilename;
 
 
     public function getId(): ?int
@@ -52,12 +57,12 @@ class Car
         return $this;
     }
 
-    public function getYear(): ?int
+    public function getYear()
     {
         return $this->year;
     }
 
-    public function setYear($year): self
+    public function setYear($year)
     {
         $this->year = $year;
 
@@ -66,7 +71,7 @@ class Car
 
     /**
      * Get the value of brand
-     */ 
+     */
     public function getBrand()
     {
         return $this->brand;
@@ -76,10 +81,30 @@ class Car
      * Set the value of brand
      *
      * @return  self
-     */ 
+     */
     public function setBrand($brand)
     {
         $this->brand = $brand;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of brochureFilename
+     */ 
+    public function getBrochureFilename()
+    {
+        return $this->brochureFilename;
+    }
+
+    /**
+     * Set the value of brochureFilename
+     *
+     * @return  self
+     */ 
+    public function setBrochureFilename($brochureFilename)
+    {
+        $this->brochureFilename = $brochureFilename;
 
         return $this;
     }

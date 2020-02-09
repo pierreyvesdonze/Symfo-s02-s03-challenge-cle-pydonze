@@ -1,0 +1,27 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+	<div class="float-right">
+		<a href="{{ path("car_create") }}" class="btn btn-primary">Ajouter une voiture</a>
+	</div>
+	<h2>Voitures</h2>
+
+	<div class="container-cards">
+		{% for id, car in cars %}
+			<div class="card flex-cards">
+				<img class="card-img-top" src="{{ asset('uploads/images/' ~ car.brochureFilename) }}" alt="Card image cap">
+				<div class="card-body">
+					<h5 class="card-title">{{ car.brand.name }}
+						{{ car.model }}</h5>
+					<p class="card-text">{{ car.year|date("d/m/Y") }}</p>
+
+					<a href=" {{ path('car_update', {'id' : car.id}) }} " class="btn btn-primary">Update</a>
+
+					<a href=" {{ path('car_delete', {'id' : car.id}) }} " class="btn btn-danger" onclick="return confirm('Confirmez la suppression')">Delete</a>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+
+{% endblock %}

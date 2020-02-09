@@ -1,0 +1,20 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+	<div class="float-right">
+		<a href="{{ path("brand_create") }}" class="btn btn-primary">Ajouter une marque</a>
+	</div>
+	<div class="container-cards">
+		{% for id, brand in brands %}
+			<div class="card flex-cards">
+				<div class="card-body">
+					<h5 class="card-title">{{ brand.name }}</h5>
+					
+					<a href="{{ path('cars_list') }}" class="btn btn-primary">Voir les voitures</a>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+
+{% endblock %}
