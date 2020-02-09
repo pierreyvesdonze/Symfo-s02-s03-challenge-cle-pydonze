@@ -152,6 +152,6 @@ class CarController extends AbstractController
 
         $this->addFlash("success", "La voiture a bien été supprimée");
 
-        return $this->redirectToRoute('homepage');
+        return $this->redirectToRoute('cars_list');
     }
 }
